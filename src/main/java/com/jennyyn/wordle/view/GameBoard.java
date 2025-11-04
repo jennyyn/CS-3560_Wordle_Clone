@@ -61,5 +61,9 @@ public class GameBoard extends JPanel {
         return keyboardButtons;
     }
 
+    public JLabel[][] getGridLabels() {
+        return gridLabels;
+    }
+
 
 }
