@@ -50,6 +50,9 @@ public class GameModel {
         return colors;
     }
 
+    public String getSecretWord() {
+        return secretWord;
+    }
 
     public List<String> getGuesses() {
         return guesses;
