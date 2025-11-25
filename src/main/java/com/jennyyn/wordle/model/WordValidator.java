@@ -38,5 +38,14 @@ public class WordValidator {
     public boolean isValidWord(String guess) {
         return validWords.contains(guess.toUpperCase());
     }
+
+    public String getRandomWord() {
+        int size = validWords.size();
+        if (size == 0) return "APPLE";  // fallback
+
+        int randIndex = (int) (Math.random() * size);
+        return validWords.stream().skip(randIndex).findFirst().orElse("APPLE");
+    }
+
 }
 

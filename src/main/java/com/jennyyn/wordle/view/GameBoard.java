@@ -38,6 +38,12 @@ public class GameBoard extends JPanel {
             JButton button = new JButton(String.valueOf(key));
             button.setFocusable(false);
             button.setFont(new Font("Arial", Font.BOLD, 16));
+
+            // REQUIRED for background color to show
+            button.setOpaque(true);
+            button.setBorderPainted(false);
+            button.setContentAreaFilled(true);
+
             keyboardPanel.add(button);
             keyboardButtons.put(key, button);
         }
@@ -49,11 +55,17 @@ public class GameBoard extends JPanel {
         for (int col = 0; col < 5; col++) {
             JLabel cell = gridLabels[row][col];
             cell.setText(String.valueOf(guess.charAt(col)));;
-            switch (colors[col]) {
+
+            String color = colors[col];
+
+            switch (color) {
                 case "GREEN" -> cell.setBackground(Color.GREEN);
                 case "YELLOW" -> cell.setBackground(Color.YELLOW);
                 case "GRAY" -> cell.setBackground(Color.GRAY);
             }
+
+            // NEW — update keyboard too
+            updateKeyboard(guess.charAt(col), color);
         }
     }
 
@@ -63,6 +75,25 @@ public class GameBoard extends JPanel {
 
     public JLabel[][] getGridLabels() {
         return gridLabels;
+    }
+
+    public void updateKeyboard(char letter, String color) {
+        letter = Character.toUpperCase(letter);
+        JButton button = keyboardButtons.get(letter);
+        if (button == null) return;
+
+        Color newColor = switch (color) {
+            case "GREEN" -> Color.GREEN;
+            case "YELLOW" -> Color.YELLOW;
+            default -> Color.GRAY;
+        };
+
+        // Only upgrade colors: GRAY → YELLOW → GREEN
+        Color current = button.getBackground();
+        if (current == Color.GREEN) return;          // already best
+        if (current == Color.YELLOW && newColor != Color.GREEN) return;
+
+        button.setBackground(newColor);
     }
 
 

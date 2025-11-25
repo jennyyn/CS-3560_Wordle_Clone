@@ -1,5 +1,6 @@
 package com.jennyyn.wordle.model;
 
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,19 +37,39 @@ public class GameModel {
 
 
     private ArrayList<String> getColorFeedback(String guess) {
-        ArrayList<String> colors = new ArrayList<>();
-        for (int i = 0; i < secretWord.length(); i++) {
-            char c = guess.charAt(i);
-            if (secretWord.charAt(i) == c) {
-                colors.add("green");
-            } else if (secretWord.contains(String.valueOf(c))) {
-                colors.add("yellow");
-            } else {
-                colors.add("gray");
+        ArrayList<String> colors = new ArrayList<>(Collections.nCopies(5, "gray"));
+        int[] freq = new int[26];  // letter frequencies of secret word
+
+        // Count letters in the secret word
+        for (int i = 0; i < 5; i++) {
+            char c = secretWord.charAt(i);
+            freq[c - 'A']++;
+        }
+
+        // PASS 1: Mark greens and reduce frequency
+        for (int i = 0; i < 5; i++) {
+            char g = guess.charAt(i);
+            if (g == secretWord.charAt(i)) {
+                colors.set(i, "green");
+                freq[g - 'A']--;  // use up this letter
             }
         }
+
+        // PASS 2: Mark yellows using remaining frequency
+        for (int i = 0; i < 5; i++) {
+            char g = guess.charAt(i);
+
+            if (!colors.get(i).equals("green")) { // skip greens
+                if (freq[g - 'A'] > 0) {
+                    colors.set(i, "yellow");
+                    freq[g - 'A']--; // use this letter
+                }
+            }
+        }
+
         return colors;
     }
+
 
     public String getSecretWord() {
         return secretWord;

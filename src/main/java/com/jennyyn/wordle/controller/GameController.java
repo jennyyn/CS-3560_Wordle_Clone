@@ -88,6 +88,7 @@ public class GameController {
                 .toArray(String[]::new);
 
         view.updateRow(row, currentGuess, colors);
+        updateKeyboardColors(currentGuess, colors);
         currentGuess = "";
 
         // Check game state
@@ -111,4 +112,32 @@ public class GameController {
             cell.setBackground(Color.LIGHT_GRAY); // reset colors until submitted
         }
     }
+
+    private void updateKeyboardColors(String guess, String[] colors) {
+        for (int i = 0; i < guess.length(); i++) {
+            char key = Character.toUpperCase(guess.charAt(i));
+            JButton button = view.getKeyboardButtons().get(key);
+            if (button != null) {
+                switch (colors[i]) {
+                    case "GREEN" -> button.setBackground(Color.GREEN);
+                    case "YELLOW" -> {
+                        // Only upgrade color if it wasn’t green already
+                        if (!button.getBackground().equals(Color.GREEN)) {
+                            button.setBackground(Color.YELLOW);
+                        }
+                    }
+                    case "GRAY" -> {
+                        if (!button.getBackground().equals(Color.GREEN) &&
+                                !button.getBackground().equals(Color.YELLOW)) {
+                            button.setBackground(Color.GRAY);
+                        }
+                    }
+                }
+
+                button.repaint();
+                button.revalidate();
+            }
+        }
+    }
+
 }

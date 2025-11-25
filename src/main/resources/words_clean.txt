@@ -1679,6 +1679,7 @@ scrub
 scrum
 scuba
 sedan
+seeds
 seedy
 segue
 seize
