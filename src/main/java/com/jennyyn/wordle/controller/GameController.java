@@ -73,7 +73,6 @@ public class GameController {
         //validate word
         if (!validator.isValidWord(currentGuess)) {
             JOptionPane.showMessageDialog(null, "Invalid word! Try again.");
-            currentGuess = "";
             updateCurrentRow();
             return;
         }
