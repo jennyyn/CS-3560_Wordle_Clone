@@ -1,3 +1,11 @@
+## Wordle Clone in Java
+A simple Wordle-style game built in Java with Swing. Guess the secret word in 6 attempts!
+
+## How to Run
+1. Clone repository: git clone https://github.com/jennyyn/CS-3560_Wordle_Clone.git
+2. Open in Intellij/Eclipse
+3. Run `Main.java`
+
 ## Features
 - **6x5 grid** to display guesses and feedback  
 - **Real-time color feedback:**
@@ -15,9 +23,11 @@
 - **Enter:** submit a guess  
 - **Mouse:** click on on-screen keyboard buttons to enter letters  
 
-
 ## Known Issues
 - Secret words are always 5 letters; no support for other lengths  
 - No hint system or scoring implemented  
-- UI may not scale perfectly on very high-resolution screens  
+- UI may not scale perfectly on very high-resolution screens
+
+## External Libraries
+- No external libraries were used
 
