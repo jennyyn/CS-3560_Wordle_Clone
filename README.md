@@ -1,6 +1,9 @@
 ## Wordle Clone in Java
 A simple Wordle-style game built in Java with Swing. Guess the secret word in 6 attempts!
 
+## Team Members
+1. Jenny Nguyen
+
 ## How to Run
 1. Clone repository: git clone https://github.com/jennyyn/CS-3560_Wordle_Clone.git
 2. Open in Intellij/Eclipse
