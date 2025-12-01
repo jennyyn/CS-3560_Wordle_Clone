@@ -22,6 +22,12 @@ public class GameModel {
     public void addGuess(String guess) {
         if (state != GameState.PLAYING) return;
 
+        // Add this check at the start:
+        if (guess.length() != secretWord.length()) {
+            // Optionally, throw an exception, or just return without changing attempts
+            return;
+        }
+
         guesses.add(guess);
         attemptsLeft--;
 
