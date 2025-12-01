@@ -29,7 +29,8 @@
   This separation keeps logic and visuals distinct and makes the code cleaner and easier to maintain.
 
  **2. What interfaces/abstractions did you create?**
- **Abstractions Created**
+ 
+ **Abstractions Created:**
 - **GameModel:** Provides methods to add guesses, get guesses, and track game state while hiding the internal logic of validating guesses and calculating colors.  
 - **GameBoard (View):** Provides methods to update the grid and access keyboard buttons, abstracting away the Swing component layout and styling details.  
 - **GameController:** Handles user input and coordinates between model and view, abstracting the interaction logic so neither model nor view need to know about each other’s implementation.  note* No explicit Java `interface` was used, but the above classes provide clear abstractions through their public methods.
@@ -66,15 +67,15 @@ The `GameModel` class compares the guessed word to the secret word and generates
    - **Solution:** I fixed this by changing how colors are assigned. Instead of just checking if a letter is in the word for yellow, I counted how many times each letter appears. I marked correct positions as green, then remaining occurrences as yellow if unused, and everything else as gray.
    
 2. **Challenge 2:** I had trouble trying to make the on-screen keyboard change to the right colors after the word was typed.
-   - **Solution:** I fixed this by sending the background color of the cell label to opaque and gray. This then allowed the color change to show
+   - **Solution:** I fixed this by sending the background color of the cell label to opaque and gray. This then allowed the color change to show.
 
-## What We Learned
+## What I Learned
 - **OOP Concepts Reinforced:** Encapsulation, separation of concerns (MVC), and use of enums for fixed states.  
 - **Design Patterns Discovered:** Model-View-Controller (MVC) pattern for organizing code
 - **Testing Insights:** Learned the importance of unit testing functions like color assignment, word validation, and handling edge cases (e.g., repeated letters).
 
-## If We Had More Time
-- **Feature We'd Add:**  hint system for difficult words, score system
-- **Refactoring We'd Do:** separate input handling from controller logic, create utility classes for color assignment
+## If I Had More Time
+- **Feature I'd Add:**  hint system for difficult words, score system
+- **Refactoring I'd Do:** separate input handling from controller logic, create utility classes for color assignment
 - **Performance Improvements:** optimize grid updates, reduce unnecessary repaint calls, and improve word validation efficiency for large word lists, increase words in words file
 
