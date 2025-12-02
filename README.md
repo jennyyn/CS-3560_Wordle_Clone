@@ -1,5 +1,7 @@
-## Wordle Clone in Java
+# Wordle Clone in Java
 A simple Wordle-style game built in Java with Swing. Guess the secret word in 6 attempts!
+
+Video Demo: https://youtu.be/IAyFcDAqug4
 
 ## Team Members
 1. Jenny Nguyen
